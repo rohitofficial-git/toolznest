@@ -1,133 +1,14 @@
-// Format bytes as human-readable text
-function formatBytes(bytes, decimals = 2) {
-    if (!+bytes) return '0 Bytes';
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
-}
+// ToolzNest Main Script
+// All logic is wrapped in DOMContentLoaded to ensure elements are available
 
-// Processing Overlay Manager
-class ProcessingUI {
-    constructor(workspaceSelector) {
-        this.workspace = document.querySelector(workspaceSelector || '.tool-workspace');
-        if (!this.workspace) return;
-        this.overlay = this.createOverlay();
-        this.workspace.appendChild(this.overlay);
-    }
-
-    createOverlay() {
-        const overlay = document.createElement('div');
-        overlay.className = 'processing-overlay';
-        overlay.id = 'processing-overlay';
-        overlay.innerHTML = `
-            <div class="processing-spinner"></div>
-            <div class="processing-text" id="processing-text">Processing your file…</div>
-            <div class="processing-subtext" id="processing-subtext">This may take a few moments</div>
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            <div class="progress-percent" id="progress-percent">0%</div>
-        `;
-        return overlay;
-    }
-
-    show(text, subtext) {
-        if (!this.overlay) return;
-        if (text) this.overlay.querySelector('#processing-text').textContent = text;
-        if (subtext) this.overlay.querySelector('#processing-subtext').textContent = subtext;
-        this.overlay.classList.add('active');
-        this.setProgress(0);
-    }
-
-    hide() {
-        if (!this.overlay) return;
-        this.overlay.classList.remove('active');
-    }
-
-    setProgress(percent) {
-        if (!this.overlay) return;
-        const bar = this.overlay.querySelector('#progress-bar');
-        const text = this.overlay.querySelector('#progress-percent');
-        bar.style.width = Math.min(percent, 100) + '%';
-        text.textContent = Math.round(percent) + '%';
-    }
-
-    // Simulate progress for tasks that don't have real progress
-    simulateProgress(durationMs, onComplete) {
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 15;
-            if (progress > 90) progress = 90;
-            this.setProgress(progress);
-        }, durationMs / 10);
-
-        return {
-            complete: () => {
-                clearInterval(interval);
-                this.setProgress(100);
-                setTimeout(() => {
-                    this.hide();
-                    if (onComplete) onComplete();
-                }, 400);
-            },
-            cancel: () => {
-                clearInterval(interval);
-                this.hide();
-            }
-        };
-    }
-}
-
-// Simple Rating UI
 document.addEventListener('DOMContentLoaded', () => {
-    const stars = document.querySelectorAll('.star');
-    const msg = document.getElementById('rating-msg');
-    
-    if(stars.length > 0) {
-        stars.forEach(star => {
-            star.addEventListener('click', (e) => {
-                const value = parseInt(e.target.getAttribute('data-value'));
-                
-                // Color the stars
-                stars.forEach((s, idx) => {
-                    if(idx < value) {
-                        s.style.color = '#F59E0B'; // Gold
-                    } else {
-                        s.style.color = '#D1D5DB'; // Gray
-                    }
-                });
-                
-                // Show message
-                if(msg) {
-                    msg.innerHTML = `Thank you for rating us ${value} out of 5 stars!`;
-                    msg.style.color = 'var(--primary)';
-                    msg.style.fontWeight = '500';
-                }
-            });
-            
-            // Hover effects
-            star.addEventListener('mouseover', (e) => {
-                const value = parseInt(e.target.getAttribute('data-value'));
-                stars.forEach((s, idx) => {
-                    if(idx < value) {
-                        s.innerHTML = '★';
-                        s.style.textShadow = '0 0 5px rgba(245, 158, 11, 0.5)';
-                    }
-                });
-            });
-            
-            star.addEventListener('mouseout', (e) => {
-                stars.forEach(s => {
-                    s.style.textShadow = 'none';
-                });
-            });
-        });
-    }
+    console.log("ToolzNest Initialized");
 
-    // Navbar scroll effect
+    // --- Navigation & Mobile Menu ---
     const navbar = document.getElementById('navbar');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
     if (navbar) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 10) {
@@ -138,86 +19,78 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Platform Features (Dark Mode, Search, Bookmarks) ---
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
 
-    // Dark Mode Toggle
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.textContent = '☰';
+            }
+        });
+    }
+
+    // --- Dark Mode Logic ---
     const themeToggle = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply saved theme immediately
     if (savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
         if (themeToggle) themeToggle.textContent = '☀️';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        if (themeToggle) themeToggle.textContent = '🌙';
     }
+
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
-            let targetTheme = 'light';
-            if (currentTheme !== 'dark') {
-                targetTheme = 'dark';
-                themeToggle.textContent = '☀️';
-            } else {
-                themeToggle.textContent = '🌙';
-            }
+            const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
             document.documentElement.setAttribute('data-theme', targetTheme);
             localStorage.setItem('theme', targetTheme);
+            themeToggle.textContent = targetTheme === 'dark' ? '☀️' : '🌙';
         });
     }
 
-    // Bookmarking Tools
-    const bookmarkBtns = document.querySelectorAll('.bookmark-btn');
-    let savedBookmarks = JSON.parse(localStorage.getItem('toolzBookmarks') || '[]');
-    
-    bookmarkBtns.forEach(btn => {
-        const card = btn.closest('.tool-card');
-        if(!card) return;
-        const toolUrl = card.getAttribute('href');
-        
-        // Restore state
-        if (savedBookmarks.includes(toolUrl)) {
-            btn.classList.add('active');
-        }
-
-        btn.addEventListener('click', (e) => {
-            e.preventDefault(); // prevent navigation
-            e.stopPropagation();
-            
-            if (btn.classList.contains('active')) {
-                btn.classList.remove('active');
-                savedBookmarks = savedBookmarks.filter(url => url !== toolUrl);
-            } else {
-                btn.classList.add('active');
-                if (!savedBookmarks.includes(toolUrl)) savedBookmarks.push(toolUrl);
-            }
-            localStorage.setItem('toolzBookmarks', JSON.stringify(savedBookmarks));
-        });
-    });
-
-    // Filtering & Searching Logic (Homepage)
+    // --- Search & Filtering ---
     const searchInput = document.getElementById('tool-search');
     const categoryTabs = document.querySelectorAll('.category-tab');
     const toolCards = document.querySelectorAll('.tool-card');
 
     function filterTools() {
-        const query = searchInput ? searchInput.value.toLowerCase() : '';
+        const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
         const activeTab = document.querySelector('.category-tab.active');
         const filterCat = activeTab ? activeTab.getAttribute('data-filter') : 'all';
 
         toolCards.forEach(card => {
             const categories = (card.getAttribute('data-category') || '').split(' ');
-            const names = card.getAttribute('data-name') || card.textContent.toLowerCase();
+            const name = card.getAttribute('data-name') || '';
+            const title = card.querySelector('h3') ? card.querySelector('h3').textContent.toLowerCase() : '';
+            const desc = card.querySelector('p') ? card.querySelector('p').textContent.toLowerCase() : '';
             
-            const matchQuery = query === '' || names.toLowerCase().includes(query);
+            const searchText = `${name} ${title} ${desc}`.toLowerCase();
+            const matchQuery = query === '' || searchText.includes(query);
             const matchCat = filterCat === 'all' || categories.includes(filterCat);
 
             if (matchQuery && matchCat) {
+                card.style.display = 'flex'; // tool cards are flex by default
                 card.classList.remove('hidden-card');
             } else {
+                card.style.display = 'none';
                 card.classList.add('hidden-card');
             }
         });
     }
 
     if (searchInput) {
-        searchInput.addEventListener('keyup', filterTools);
+        searchInput.addEventListener('input', filterTools);
     }
 
     if (categoryTabs.length > 0) {
@@ -230,94 +103,116 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Common Drag and Drop UI setup function
-    window.setupDragAndDrop = (dropAreaId, fileInputId, onFileSelect) => {
-        const dropArea = document.getElementById(dropAreaId);
-        const fileInput = document.getElementById(fileInputId);
-        
-        if(!dropArea || !fileInput) return;
+    // --- Bookmarking Logic ---
+    const bookmarkBtns = document.querySelectorAll('.bookmark-btn');
+    let bookmarks = JSON.parse(localStorage.getItem('toolzBookmarks') || '[]');
 
-        // Click to open file dialog
-        dropArea.addEventListener('click', () => fileInput.click());
+    bookmarkBtns.forEach(btn => {
+        const card = btn.closest('.tool-card');
+        if (!card) return;
+        const toolUrl = card.getAttribute('href');
 
-        // Handle file selection from dialog
-        fileInput.addEventListener('change', (e) => {
-            if(e.target.files.length > 0) {
-                onFileSelect(e.target.files[0]);
-            }
-        });
-
-        // Drag events
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, preventDefaults, false);
-        });
-
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
+        // Initial state
+        if (bookmarks.includes(toolUrl)) {
+            btn.classList.add('active');
         }
 
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => {
-                dropArea.classList.add('dragover');
-            }, false);
-        });
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
 
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => {
-                dropArea.classList.remove('dragover');
-            }, false);
-        });
-
-        dropArea.addEventListener('drop', (e) => {
-            const dt = e.dataTransfer;
-            const files = dt.files;
-            if(files.length > 0) {
-                onFileSelect(files[0]);
+            if (btn.classList.contains('active')) {
+                btn.classList.remove('active');
+                bookmarks = bookmarks.filter(url => url !== toolUrl);
+            } else {
+                btn.classList.add('active');
+                if (!bookmarks.includes(toolUrl)) bookmarks.push(toolUrl);
             }
-        }, false);
-    };
-
-    // Multi-file drag and drop setup
-    window.setupMultiDragAndDrop = (dropAreaId, fileInputId, onFilesSelect) => {
-        const dropArea = document.getElementById(dropAreaId);
-        const fileInput = document.getElementById(fileInputId);
-        
-        if(!dropArea || !fileInput) return;
-
-        dropArea.addEventListener('click', () => fileInput.click());
-
-        fileInput.addEventListener('change', (e) => {
-            if(e.target.files.length > 0) {
-                onFilesSelect(Array.from(e.target.files));
-            }
+            localStorage.setItem('toolzBookmarks', JSON.stringify(bookmarks));
         });
+    });
 
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-            }, false);
-        });
-
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => {
-                dropArea.classList.add('dragover');
-            }, false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, () => {
-                dropArea.classList.remove('dragover');
-            }, false);
-        });
-
-        dropArea.addEventListener('drop', (e) => {
-            const dt = e.dataTransfer;
-            const files = dt.files;
-            if(files.length > 0) {
-                onFilesSelect(Array.from(files));
-            }
-        }, false);
-    };
 });
+
+// --- Utility Functions ---
+function formatBytes(bytes, decimals = 2) {
+    if (!+bytes) return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+}
+
+// Global UI Helper for Tools
+class ProcessingUI {
+    constructor(workspaceSelector) {
+        this.workspace = document.querySelector(workspaceSelector || '.tool-workspace');
+        if (!this.workspace) return;
+        this.overlay = this.createOverlay();
+        this.workspace.appendChild(this.overlay);
+    }
+
+    createOverlay() {
+        const overlay = document.createElement('div');
+        overlay.className = 'processing-overlay';
+        overlay.id = 'processing-overlay';
+        overlay.style.display = 'none';
+        overlay.innerHTML = `
+            <div class="processing-spinner"></div>
+            <div class="processing-text">Processing...</div>
+            <div class="progress-container"><div class="progress-bar"></div></div>
+        `;
+        return overlay;
+    }
+
+    show(text = 'Processing...', subtext = '') {
+        if (!this.overlay) return;
+        this.overlay.querySelector('.processing-text').textContent = text;
+        this.overlay.style.display = 'flex';
+        this.setProgress(0);
+    }
+
+    hide() {
+        if (this.overlay) this.overlay.style.display = 'none';
+    }
+
+    setProgress(percent) {
+        if (!this.overlay) return;
+        const bar = this.overlay.querySelector('.progress-bar');
+        bar.style.width = `${percent}%`;
+    }
+}
+
+// Global File Helper Initialization
+window.setupDragAndDrop = (dropAreaId, fileInputId, onFileSelect) => {
+    const dropArea = document.getElementById(dropAreaId);
+    const fileInput = document.getElementById(fileInputId);
+    if (!dropArea || !fileInput) return;
+
+    dropArea.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) onFileSelect(e.target.files[0]);
+    });
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
+        dropArea.addEventListener(evt, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    });
+
+    ['dragenter', 'dragover'].forEach(evt => {
+        dropArea.addEventListener(evt, () => dropArea.classList.add('dragover'));
+    });
+
+    ['dragleave', 'drop'].forEach(evt => {
+        dropArea.addEventListener(evt, () => dropArea.classList.remove('dragover'));
+    });
+
+    dropArea.addEventListener('drop', (e) => {
+        const file = e.dataTransfer.files[0];
+        if (file) onFileSelect(file);
+    });
+};
