@@ -138,6 +138,98 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Platform Features (Dark Mode, Search, Bookmarks) ---
+
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (themeToggle) themeToggle.textContent = '☀️';
+    }
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            let targetTheme = 'light';
+            if (currentTheme !== 'dark') {
+                targetTheme = 'dark';
+                themeToggle.textContent = '☀️';
+            } else {
+                themeToggle.textContent = '🌙';
+            }
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            localStorage.setItem('theme', targetTheme);
+        });
+    }
+
+    // Bookmarking Tools
+    const bookmarkBtns = document.querySelectorAll('.bookmark-btn');
+    let savedBookmarks = JSON.parse(localStorage.getItem('toolzBookmarks') || '[]');
+    
+    bookmarkBtns.forEach(btn => {
+        const card = btn.closest('.tool-card');
+        if(!card) return;
+        const toolUrl = card.getAttribute('href');
+        
+        // Restore state
+        if (savedBookmarks.includes(toolUrl)) {
+            btn.classList.add('active');
+        }
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); // prevent navigation
+            e.stopPropagation();
+            
+            if (btn.classList.contains('active')) {
+                btn.classList.remove('active');
+                savedBookmarks = savedBookmarks.filter(url => url !== toolUrl);
+            } else {
+                btn.classList.add('active');
+                if (!savedBookmarks.includes(toolUrl)) savedBookmarks.push(toolUrl);
+            }
+            localStorage.setItem('toolzBookmarks', JSON.stringify(savedBookmarks));
+        });
+    });
+
+    // Filtering & Searching Logic (Homepage)
+    const searchInput = document.getElementById('tool-search');
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    const toolCards = document.querySelectorAll('.tool-card');
+
+    function filterTools() {
+        const query = searchInput ? searchInput.value.toLowerCase() : '';
+        const activeTab = document.querySelector('.category-tab.active');
+        const filterCat = activeTab ? activeTab.getAttribute('data-filter') : 'all';
+
+        toolCards.forEach(card => {
+            const categories = (card.getAttribute('data-category') || '').split(' ');
+            const names = card.getAttribute('data-name') || card.textContent.toLowerCase();
+            
+            const matchQuery = query === '' || names.toLowerCase().includes(query);
+            const matchCat = filterCat === 'all' || categories.includes(filterCat);
+
+            if (matchQuery && matchCat) {
+                card.classList.remove('hidden-card');
+            } else {
+                card.classList.add('hidden-card');
+            }
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('keyup', filterTools);
+    }
+
+    if (categoryTabs.length > 0) {
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                filterTools();
+            });
+        });
+    }
+
     // Common Drag and Drop UI setup function
     window.setupDragAndDrop = (dropAreaId, fileInputId, onFileSelect) => {
         const dropArea = document.getElementById(dropAreaId);

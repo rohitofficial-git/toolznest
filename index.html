@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Online PDF & Image Tools – No Watermark, No Login | ToolzNest</title>
-    <meta name="description" content="ToolzNest offers free online tools: compress PDF, merge PDF, reduce image size to 100KB, remove background – no watermark, no login, instant download.">
-    <meta name="keywords" content="compress pdf online free, merge pdf online, reduce image size 100kb, background remover free, image compressor, pdf tools">
+    <title>Free PDF, Image & Utility Tools - ToolzNest</title>
+    <meta name="description" content="ToolzNest provides free online PDF and Image tools. Compress PDF, Merge PDF, Split PDF, Image Enhancer, Image Compressor, AI Summarizer. Fast, secure, no signup required.">
+    <meta name="keywords" content="compress pdf online free, merge pdf online, split pdf online, reduce image size 100kb, image enhancer, image compressor, AI summarizer, free pdf tools, free image tools, pdf editor, convert image to pdf, pdf compressor, toolznest">
     <link rel="canonical" href="https://toolznest.com/">
+    
+    <!-- Open Graph SEO -->
+    <meta property="og:title" content="Free Online Image, PDF & Utility Tools | ToolzNest">
+    <meta property="og:description" content="Rank #1 PDF & Image manipulation platform. 100% free, fast, private, and secure browser-based tools. No watermark.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolznest.com/">
+
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Dark Mode Init -->
+    <script>if(localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');</script>
 </head>
 <body>
     <nav class="navbar" id="navbar">
@@ -19,6 +29,13 @@
                 <li><a href="#tools">Tools</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
+            <div class="nav-actions">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="tool-search" placeholder="Search tools...">
+                </div>
+                <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">🌙</button>
+            </div>
         </div>
     </nav>
 
@@ -26,10 +43,10 @@
         <div class="container hero-content">
             <div class="hero-badge">
                 <span class="badge-icon">⚡</span>
-                100% Free – No Sign Up Required
+                Free Image, PDF & Utility Tools
             </div>
-            <h1>Free Fast Online Tools –<br><span class="highlight">No Watermark, No Login, Instant Download</span></h1>
-            <p class="subtitle">Compress PDF, merge PDFs, reduce image size to any KB, remove backgrounds – all in one place. Lightning fast, secure, and works right in your browser.</p>
+            <h1>Free image, pdf & Utility Tools<br><span class="highlight">Fast, Secure, No Signup Required</span></h1>
+            <p class="subtitle">Compress PDF, merge documents, enhance images, and use AI summarizers all in one place. Lightning fast, 100% private client-side processing.</p>
             <div class="hero-features">
                 <div class="hero-feature">
                     <span class="check-icon">✓</span>
@@ -82,61 +99,35 @@
         </div>
     </section>
 
-    <main class="container" id="tools">
-        <!-- PDF Tools -->
-        <section class="category-section">
-            <h2 class="section-title">🔧 PDF Tools</h2>
-            <p class="section-subtitle">Compress, merge, and convert PDFs – all free, no watermark.</p>
-            <div class="cards-grid">
-                <!-- Compress PDF -->
-                <a href="tools/compress-pdf-online-free.html" class="tool-card" id="compress-pdf-card">
-                    <span class="tag tag-popular">Popular</span>
-                    <div class="icon-wrapper">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="12" y2="18"></line><line x1="15" y1="15" x2="12" y2="18"></line></svg>
-                    </div>
-                    <h3>Compress PDF Online Free</h3>
-                    <p>Reduce PDF file size without losing quality. No watermark, instant download.</p>
-                </a>
+    <main class="container" id="tools" style="padding-top: 40px;">
+        
+        <div class="category-tabs">
+            <button class="category-tab active" data-filter="all">All Tools</button>
+            <button class="category-tab" data-filter="image">Image Tools</button>
+            <button class="category-tab" data-filter="pdf">PDF Tools</button>
+        </div>
 
-                <!-- Merge PDF -->
-                <a href="tools/merge-pdf-online.html" class="tool-card" id="merge-pdf-card">
+        <section class="category-section">
+            <div class="cards-grid" id="tools-grid">
+                
+                <!-- Image Enhancer -->
+                <a href="tools/image-enhancer.html" class="tool-card" data-category="image" data-name="image enhancer fix quality upscale clarify sharp blur">
+                    <button class="bookmark-btn" title="Bookmark Tool">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
                     <span class="tag tag-new">New</span>
                     <div class="icon-wrapper">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="7" height="14" rx="1"></rect><rect x="15" y="3" width="7" height="14" rx="1"></rect><path d="M12 12l-3 3m0-6l3 3"></path></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"></path><path d="M3 12h18"></path><path d="M12 3A9 9 0 0 1 21 12A9 9 0 0 1 12 21A9 9 0 0 1 3 12A9 9 0 0 1 12 3Z"></path><path d="M15 9l-6 6"></path></svg>
                     </div>
-                    <h3>Merge PDF Online</h3>
-                    <p>Combine multiple PDF files into one document. Fast, free, no sign-up.</p>
+                    <h3>Image Enhancer Free</h3>
+                    <p>Improve photo quality, sharpen details, and upscale instantly.</p>
                 </a>
-
-                <!-- Image to PDF -->
-                <a href="tools/image-to-pdf.html" class="tool-card" id="image-to-pdf-card">
-                    <div class="icon-wrapper">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    </div>
-                    <h3>Image to PDF</h3>
-                    <p>Convert JPG, PNG images to PDF documents instantly.</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- Image Tools -->
-        <section class="category-section">
-            <h2 class="section-title">🖼️ Image Tools</h2>
-            <p class="section-subtitle">Compress, resize, crop, and remove backgrounds – effortlessly.</p>
-            <div class="cards-grid">
-                <!-- Reduce Image Size -->
-                <a href="tools/reduce-image-size-100kb.html" class="tool-card" id="reduce-image-card">
-                    <span class="tag tag-hot">🔥 Hot</span>
-                    <div class="icon-wrapper">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                    </div>
-                    <h3>Reduce Image Size to 100KB</h3>
-                    <p>Compress images to exact KB sizes – 20KB, 50KB, 100KB, 200KB. Perfect for applications.</p>
-                </a>
-
 
                 <!-- Image Compressor -->
-                <a href="tools/image-compressor.html" class="tool-card" id="image-compressor-card">
+                <a href="tools/image-compressor.html" class="tool-card" data-category="image" data-name="image compressor reduce quality jpeg png size shrink">
+                    <button class="bookmark-btn" title="Bookmark Tool">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
                     <span class="tag tag-popular">Popular</span>
                     <div class="icon-wrapper">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -145,24 +136,85 @@
                     <p>Reduce image file size quickly without losing quality.</p>
                 </a>
 
-                <!-- Image Resizer -->
-                <a href="tools/image-resizer.html" class="tool-card" id="image-resizer-card">
+                <!-- Compress PDF -->
+                <a href="tools/compress-pdf-online-free.html" class="tool-card" data-category="pdf" data-name="compress pdf online free size size reducer shrink document">
+                    <button class="bookmark-btn" title="Bookmark Tool">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
+                    <span class="tag tag-popular">Popular</span>
                     <div class="icon-wrapper">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="12" y2="18"></line><line x1="15" y1="15" x2="12" y2="18"></line></svg>
                     </div>
-                    <h3>Image Resizer</h3>
-                    <p>Resize images by dimensions or percentage easily.</p>
+                    <h3>Compress PDF</h3>
+                    <p>Reduce PDF file size without losing quality. No watermark, instant download.</p>
                 </a>
 
-                <!-- Image Enhancer -->
-                <a href="tools/image-enhancer.html" class="tool-card" id="image-enhancer-card">
+                <!-- Merge PDF -->
+                <a href="tools/merge-pdf-online.html" class="tool-card" data-category="pdf" data-name="merge pdf online combine join add documents">
+                    <button class="bookmark-btn" title="Bookmark Tool">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
                     <span class="tag tag-new">New</span>
                     <div class="icon-wrapper">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"></path><path d="M3 12h18"></path><path d="M12 3A9 9 0 0 1 21 12A9 9 0 0 1 12 21A9 9 0 0 1 3 12A9 9 0 0 1 12 3Z"></path><path d="M15 9l-6 6"></path></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="7" height="14" rx="1"></rect><rect x="15" y="3" width="7" height="14" rx="1"></rect><path d="M12 12l-3 3m0-6l3 3"></path></svg>
                     </div>
-                    <h3>Image Enhancer Free</h3>
-                    <p>Improve photo quality, sharpen details, and upscale instantly.</p>
+                    <h3>Merge PDF</h3>
+                    <p>Combine multiple PDF files into one document. Fast, free, no sign-up.</p>
                 </a>
+
+                <!-- Split PDF -->
+                <a href="tools/split-pdf-online.html" class="tool-card" data-category="pdf" data-name="split pdf extract pages separate divide document cuts">
+                    <button class="bookmark-btn" title="Bookmark Tool">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
+                    <span class="tag tag-new">New</span>
+                    <div class="icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><line x1="2" y1="12" x2="22" y2="12"></line><line x1="16" y1="8" x2="20" y2="12"></line><line x1="16" y1="16" x2="20" y2="12"></line></svg>
+                    </div>
+                    <h3>Split PDF</h3>
+                    <p>Extract single or multiple pages from your PDFs instantly.</p>
+                </a>
+
+                <!-- AI Summarizer -->
+                <a href="tools/ai-summarizer.html" class="tool-card" data-category="pdf image" data-name="ai summarizer shorten tl;dr article essay summary read">
+                    <button class="bookmark-btn" title="Bookmark Tool">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
+                    <span class="tag tag-hot">🔥 Hot</span>
+                    <div class="icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="12" x2="14" y2="12"></line><line x1="4" y1="18" x2="8" y2="18"></line></svg>
+                    </div>
+                    <h3>AI Summarizer</h3>
+                    <p>Condense long articles and essays into quick bullet points.</p>
+                </a>
+                
+                <!-- Image to PDF -->
+                <a href="tools/image-to-pdf.html" class="tool-card" data-category="pdf image" data-name="image to pdf convert jpg png">
+                    <button class="bookmark-btn" title="Bookmark Tool">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
+                    <div class="icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </div>
+                    <h3>Image to PDF</h3>
+                    <p>Convert JPG, PNG images to PDF documents instantly.</p>
+                </a>
+
+                <!-- Reduce Image Size -->
+                <a href="tools/reduce-image-size-100kb.html" class="tool-card" data-category="image" data-name="reduce image size shrink exact kb resize">
+                    <button class="bookmark-btn" title="Bookmark Tool">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
+                    <div class="icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    </div>
+                    <h3>Reduce Image Size</h3>
+                    <p>Compress images to exact KB sizes – 20KB, 50KB, 100KB, 200KB.</p>
+                </a>
+            </div>
+            
+            <div class="ad-slot" style="margin-top: 40px;">
+                [AdSpace] Responsive Display Ad - Middle
             </div>
         </section>
     </main>
