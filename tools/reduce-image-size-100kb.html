@@ -24,17 +24,24 @@
 
     <main class="container">
         <div class="tool-page-header">
-            <h1>Reduce Image Size to 100KB – Free, No Watermark</h1>
-            <p>Compress any image to your exact target size – 20KB, 50KB, 100KB, 200KB. Perfect for passport photos, visa applications, and online forms.</p>
+            <h1>Reduce Image Size to 100KB</h1>
+            <p>Compress images to your exact target size without losing quality.</p>
         </div>
 
         <div class="tool-workspace">
+            <div class="tool-steps">
+                <div class="tool-step active" id="step-1"><span>1</span> Upload</div>
+                <div class="tool-step" id="step-2"><span>2</span> Settings</div>
+                <div class="tool-step" id="step-3"><span>3</span> Download</div>
+            </div>
+
             <div class="upload-area" id="upload-area">
                 <div class="upload-icon">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
                 </div>
-                <span class="upload-label">Click or drag & drop your image here</span>
-                <span class="text-muted">Supports JPG, PNG, WEBP</span>
+                <div class="upload-label">Select or Drag Image</div>
+                <p class="text-muted">Supports JPG, PNG, WEBP</p>
+                <div class="upload-btn-real">Choose File</div>
                 <input type="file" id="file-input" class="hidden-input" accept="image/jpeg, image/png, image/webp">
             </div>
 

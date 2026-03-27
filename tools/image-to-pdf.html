@@ -25,18 +25,25 @@
 
     <main class="container">
         <div class="tool-page-header">
-            <h1>Image to PDF Converter – Free Online</h1>
-            <p>Convert your JPG, PNG, and WEBP images to a single PDF document instantly.</p>
+            <h1>Image to PDF Converter</h1>
+            <p>Convert JPG/PNG to a professional PDF document instantly.</p>
         </div>
 
         <div class="tool-workspace">
+            <div class="tool-steps">
+                <div class="tool-step active" id="step-1"><span>1</span> Upload</div>
+                <div class="tool-step" id="step-2"><span>2</span> Convert</div>
+                <div class="tool-step" id="step-3"><span>3</span> Download</div>
+            </div>
+
             <div class="upload-area" id="upload-area">
                 <div class="upload-icon">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                 </div>
-                <span class="upload-label">Click or drag & drop multiple images here</span>
-                <span class="text-muted">Supports JPG, PNG</span>
-                <input type="file" id="file-input" class="hidden-input" accept="image/jpeg, image/png" multiple>
+                <div class="upload-label">Drag and Drop Images</div>
+                <p class="text-muted">or click to browse from your computer</p>
+                <div class="upload-btn-real">Select Images</div>
+                <input type="file" id="file-input" class="hidden-input" accept="image/jpeg, image/png, image/webp" multiple>
             </div>
 
             <div class="settings-panel" id="settings-panel">
