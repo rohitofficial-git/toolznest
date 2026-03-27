@@ -285,6 +285,55 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+/* Tool Cards Foundations */
+.icon-wrapper {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.icon-pdf { background: #fee2e2; color: #ef4444; }
+.icon-image { background: #dcfce7; color: #22c55e; }
+.icon-ai { background: #e0e7ff; color: #6366f1; }
+
+.tag {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px var(--primary-glow);
+}
+.tag-new { background: var(--accent); }
+.tag-popular { background: var(--success); }
+.tag-hot { background: var(--warning); }
+
+.bookmark-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+.bookmark-btn:hover { color: var(--danger); background: #fee2e2; border-color: #fecaca; }
+.bookmark-btn.active { color: var(--danger); fill: var(--danger); border-color: var(--danger); }
+
 /* Tool Workspaces */
 .tool-workspace {
     background: var(--card-bg);
