@@ -180,6 +180,21 @@ body {
     margin-bottom: 20px;
     line-height: 1.1;
 }
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: var(--secondary);
+    color: var(--primary);
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+    border: 1px solid var(--border-color);
+}
+
 .subtitle {
     font-size: 1.25rem;
     color: var(--text-muted);
@@ -190,21 +205,33 @@ body {
 .hero-features {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
     flex-wrap: wrap;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-feature {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-weight: 600;
     color: var(--text-main);
+    background: var(--card-bg);
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    white-space: nowrap;
 }
 
 .check-icon, .trust-icon {
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
 }
 
 /* Tabs */
