@@ -8,8 +8,7 @@
         { "source": "/background-remover-free", "destination": "/tools/background-remover-free.html" },
         { "source": "/image-compressor", "destination": "/tools/image-compressor.html" },
         { "source": "/image-resizer", "destination": "/tools/image-resizer.html" },
-        { "source": "/image-to-pdf", "destination": "/tools/image-to-pdf.html" },
-        { "source": "/pdf-compressor", "destination": "/tools/pdf-compressor.html" }
+        { "source": "/image-to-pdf", "destination": "/tools/image-to-pdf.html" }
     ],
     "headers": [
         {
